@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cycle Trip Planner</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css" />
+
+</head>
+<body>
+<div id="app">
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <h1>Cycle Planner</h1>
+      <p>CYCLING-FRIENDLY ROUTING · OSRM + OSM</p>
+    </div>
+
+    <div id="sidebar-body">
+
+      <div class="section-label">Add waypoint</div>
+      <div id="search-row">
+        <input id="search-input" type="text" placeholder="Place name or address…" autocomplete="off"/>
+        <button class="btn" onclick="searchAndAdd()">Add</button>
+      </div>
+      <div class="hint">…or click anywhere on the map</div>
+
+      <div class="section-label">Waypoints</div>
+      <div id="wp-list"></div>
+
+      <div id="reorder-row">
+        <button class="btn secondary" onclick="moveUp()">▲ Up</button>
+        <button class="btn secondary" onclick="moveDown()">▼ Down</button>
+      </div>
+
+      <div class="section-label">Route info</div>
+      <div id="stats-box">No route calculated yet</div>
+
+    </div>
+
+    <div id="sidebar-footer">
+      <button class="btn blue" onclick="calculateRoute()">🗺 Calculate Route</button>
+      <button class="btn secondary" onclick="exportSVG()">💾 Export SVG</button>
+      <button class="btn secondary" onclick="exportGPX()">📍 Export GPX</button>
+      <button class="btn secondary" onclick="togglePOIs()" id="poi-btn">🔍 Show Discoveries</button>
+      <button class="btn danger" onclick="clearAll()">🗑 Clear All</button>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div id="map"></div>
+
+  <div id="elevation-panel">
+  <h3>Elevation Profile</h3>
+  <canvas id="elevation-canvas"></canvas>
+</div>
+</div>
+
+<div id="statusbar">Click the map to drop a waypoint</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/static/app.js"></script>
+</html>
